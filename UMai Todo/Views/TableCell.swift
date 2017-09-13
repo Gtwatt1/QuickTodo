@@ -36,6 +36,8 @@ class TableCell : UITableViewCell{
         return m
     }()
     
+    
+    
     let todoIcon : UIImageView = {
         let icon = UIImageView()
         icon.translatesAutoresizingMaskIntoConstraints = false

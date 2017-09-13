@@ -12,12 +12,15 @@ import RealmSwift
 class HomeCell : UICollectionViewCell, UITableViewDelegate,UITableViewDataSource{
     
     
-    var tnote = ["money", "flesh", "gold", "royal", "hemp","sorry", "coded", "umai"]
-    var todos = [Todo]()
+    var todos = [Todo](){
+        didSet{
+        
+        }
+        
+    }
     var flag : Int?{
         didSet{
-            todos =  flag! == 0 ? TodoDAO().getTodosByType(type: State.Pending.rawValue) : TodoDAO().getTodosByType(type: State.Done.rawValue)
-            tnote =  flag == 0 ? ["money", "flesh", "gold", "royal", "hemp","sorry", "coded", "umai"] : ["gfrt", "best", "master", "help", "love","crime", "story", "umai"]
+            todos = flag! == 0 ? TodoDAO().getTodosByState(type: State.Pending.rawValue) : TodoDAO().getTodosByState(type: State.Done.rawValue)
         }
         
     }
@@ -25,8 +28,8 @@ class HomeCell : UICollectionViewCell, UITableViewDelegate,UITableViewDataSource
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .yellow
         setupViews()
+        reload()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,12 +39,9 @@ class HomeCell : UICollectionViewCell, UITableViewDelegate,UITableViewDataSource
     
     lazy var tableView : UITableView = {
         let table = UITableView()
-//        table.frame = frame
         table.translatesAutoresizingMaskIntoConstraints = false
-        
         table.delegate = self
         table.dataSource = self
-        
         table.register(TableCell.self, forCellReuseIdentifier: "cell")
         return table
     }()
@@ -64,8 +64,10 @@ class HomeCell : UICollectionViewCell, UITableViewDelegate,UITableViewDataSource
     }
     
     func reload(){
-         todos =  flag! == 0 ? TodoDAO().getTodosByType(type: State.Pending.rawValue) : TodoDAO().getTodosByType(type: State.Done.rawValue)
+        if flag != nil{
+         todos =  flag! == 0 ? TodoDAO().getTodosByState(type: State.Pending.rawValue) : TodoDAO().getTodosByState(type: State.Done.rawValue)
         tableView.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,6 +81,8 @@ class HomeCell : UICollectionViewCell, UITableViewDelegate,UITableViewDataSource
         cell.flag = flag
         return cell
     }
+    
+    
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -109,10 +113,11 @@ class HomeCell : UICollectionViewCell, UITableViewDelegate,UITableViewDataSource
             cell.todoStatusChange.image = UIImage(named:"mark")
         }
         
-        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
             cell.todoStatusChange.alpha = 1
         }, completion: { (flag) in
             let todo = self.todos[indexPath.row]
+            print(todo)
             var change = ""
             if todo.state == State.Done.rawValue{
                 change = State.Pending.rawValue
@@ -127,5 +132,7 @@ class HomeCell : UICollectionViewCell, UITableViewDelegate,UITableViewDataSource
         
         
     }
+ 
     
+   
 }

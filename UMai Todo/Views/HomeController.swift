@@ -101,6 +101,8 @@ UICollectionViewDelegateFlowLayout{
     func changeTodoCollectionType(index: Int){
         let indexPath = IndexPath(item: index, section: 0)
         collectionView.scrollToItem(at: indexPath, at: [], animated: true)
+        homecell?.flag = index
+        homecell?.reload()
         
         if index == 1{
             navigationItem.rightBarButtonItem = nil
@@ -111,6 +113,7 @@ UICollectionViewDelegateFlowLayout{
         }
         
     }
+    
     
     
     
@@ -174,13 +177,21 @@ UICollectionViewDelegateFlowLayout{
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
     }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        print("123")
+    }
+    
+    
     
     
     
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Mycell", for: indexPath) as! HomeCell
-        homecell = cell
+        if homecell == nil{
+            homecell = cell
+        }
         cell.flag = indexPath.row
         return cell
     }

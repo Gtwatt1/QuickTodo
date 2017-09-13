@@ -32,7 +32,7 @@ class TodoDAO{
         
     }
     
-    func getTodosByType(type: String) -> [Todo]{
+    func getTodosByState(type: String) -> [Todo]{
         
         let predicate = NSPredicate(format: "state =  %@",type)
         return Array(realm.objects(Todo.self).filter(predicate))
