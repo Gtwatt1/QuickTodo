@@ -126,18 +126,23 @@ UICollectionViewDelegateFlowLayout{
         let alert = SCLAlertView(appearance: appearance)
         let txt = alert.addTextField("What do wanna do")
         alert.addButton("Add Todo") {
-            if let text = txt.text && text != ""{
-                addToDb(text : text)
+            if let text = txt.text  {
+                if text != ""{
+                    self.addToDb(text : text)
+                }
             }
             print("Text value: \(txt.text ?? "")")
         }
         alert.showEdit("Todo", subTitle: "", colorStyle : 45751 )
         
     }
+    var homecell : HomeCell?
     
     func addToDb(text: String){
-        
-        
+        let todo = Todo()
+        todo.title = text
+        TodoDAO().save(todo: todo)
+        homecell?.reload()
     }
    
 
@@ -159,7 +164,7 @@ UICollectionViewDelegateFlowLayout{
         collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         collectionView.topAnchor.constraint(equalTo: backView.bottomAnchor).isActive = true
         collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 
         
         
@@ -175,6 +180,7 @@ UICollectionViewDelegateFlowLayout{
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Mycell", for: indexPath) as! HomeCell
+        homecell = cell
         cell.flag = indexPath.row
         return cell
     }

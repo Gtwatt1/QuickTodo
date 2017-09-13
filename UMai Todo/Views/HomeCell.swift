@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class HomeCell : UICollectionViewCell, UITableViewDelegate,UITableViewDataSource{
     
@@ -15,11 +16,12 @@ class HomeCell : UICollectionViewCell, UITableViewDelegate,UITableViewDataSource
     var todos = [Todo]()
     var flag : Int?{
         didSet{
-//            todos =  flag == 0 ? TodoDAO().getTodosByType(type: State.Pending.rawValue) : TodoDAO().getTodosByType(type: State.Done.rawValue)
+            todos =  flag! == 0 ? TodoDAO().getTodosByType(type: State.Pending.rawValue) : TodoDAO().getTodosByType(type: State.Done.rawValue)
             tnote =  flag == 0 ? ["money", "flesh", "gold", "royal", "hemp","sorry", "coded", "umai"] : ["gfrt", "best", "master", "help", "love","crime", "story", "umai"]
         }
         
     }
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,41 +47,35 @@ class HomeCell : UICollectionViewCell, UITableViewDelegate,UITableViewDataSource
     }()
     
     
-    let v : UIView = {
-        let v = UIView()
-        v.backgroundColor = .white
-        v.translatesAutoresizingMaskIntoConstraints = false
-        return v
-    }()
+  
     
   
     func setupViews(){
         addSubview(tableView)
-        addSubview(v)
         
         tableView.contentInset = UIEdgeInsetsMake(8, 0, 8, 0 )
         tableView.scrollIndicatorInsets = UIEdgeInsetsMake(8, 0, 8, 0 )
         
-        tableView.topAnchor.constraint(equalTo: topAnchor, constant : 4).isActive = true
+        tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: bottomAnchor , constant : -8).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        
-        //        v.topAnchor.constraint(equalTo: topAnchor, constant : 40).isActive = true
-        //        v.leftAnchor.constraint(equalTo: leftAnchor,constant : 40).isActive = true
-        //        v.bottomAnchor.constraint(equalTo: bottomAnchor,constant : -40).isActive = true
-        //        v.rightAnchor.constraint(equalTo: rightAnchor, constant : -40).isActive = true
-        
+    
+    }
+    
+    func reload(){
+         todos =  flag! == 0 ? TodoDAO().getTodosByType(type: State.Pending.rawValue) : TodoDAO().getTodosByType(type: State.Done.rawValue)
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tnote.count
+        return todos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableCell
         
-        cell.todoTitle.text = tnote[indexPath.row]
+        cell.todoTitle.text = todos[indexPath.row].title
         cell.flag = flag
         return cell
     }
@@ -97,33 +93,39 @@ class HomeCell : UICollectionViewCell, UITableViewDelegate,UITableViewDataSource
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tnote.remove(at: indexPath.row)
+            let todo = self.todos[indexPath.row]
+            self.todos.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .left)
-            tableView.reloadData()
+            TodoDAO().delete(todo: todo)
         }
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! TableCell
-        cell.todoStatusChange.image = UIImage(named:"cancel")
+        if flag == 1{
+            cell.todoStatusChange.image = UIImage(named:"cancel")
+        }else {
+            cell.todoStatusChange.image = UIImage(named:"mark")
+        }
         
         UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
             cell.todoStatusChange.alpha = 1
         }, completion: { (flag) in
-            self.tnote.remove(at: indexPath.row)
+            let todo = self.todos[indexPath.row]
+            var change = ""
+            if todo.state == State.Done.rawValue{
+                change = State.Pending.rawValue
+            }else {
+               change = State.Done.rawValue
+            }
+            TodoDAO().Update(todo: todo, state: change)
+            self.todos.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .left)
-            tableView.reloadData()})
+            self.reload()
+        })
         
         
-        
-        
-//        let todo  = todos[indexPath.row]
-//        if todo.state = State.Pending.rawValue{
-//            TodoDAO().Update(todo: todo, state: State.Done.rawValue)
-//        }else{
-//            TodoDAO().Update(todo: todo, state: State.Pending.rawValue)
-//        }
     }
     
 }
