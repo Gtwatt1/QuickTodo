@@ -25,6 +25,7 @@
 		3FAE86AC1F691165009A01AC /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		3FAE86B21F691DA2009A01AC /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		3FAE86B41F69263C009A01AC /* TodoDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDAO.swift; sourceTree = "<group>"; };
+		3FAE86B61F692CF5009A01AC /* Screen Shot 2017-09-13 at 10.07.35 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2017-09-13 at 10.07.35 AM.png"; sourceTree = "<group>"; };
 		3FCF892B1F683696009A3A36 /* UMai Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UMai Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FCF892E1F683696009A3A36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FCF89351F683696009A3A36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,6 +100,7 @@
 		3FCF892D1F683696009A3A36 /* UMai Todo */ = {
 			isa = PBXGroup;
 			children = (
+				3FAE86B61F692CF5009A01AC /* Screen Shot 2017-09-13 at 10.07.35 AM.png */,
 				3FAE86B11F691D81009A01AC /* Helper */,
 				3FAE86B01F691D76009A01AC /* DAO */,
 				3FAE86AF1F691D5D009A01AC /* Model */,
