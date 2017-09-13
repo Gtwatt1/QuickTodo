@@ -15,7 +15,7 @@ class HomeCell : UICollectionViewCell, UITableViewDelegate,UITableViewDataSource
     var todos = [Todo]()
     var flag : Int?{
         didSet{
-            todos =  flag == 0 ? TodoDAO().getTodosByType(type: State.Pending.rawValue) : TodoDAO().getTodosByType(type: State.Done.rawValue)
+//            todos =  flag == 0 ? TodoDAO().getTodosByType(type: State.Pending.rawValue) : TodoDAO().getTodosByType(type: State.Done.rawValue)
             tnote =  flag == 0 ? ["money", "flesh", "gold", "royal", "hemp","sorry", "coded", "umai"] : ["gfrt", "best", "master", "help", "love","crime", "story", "umai"]
         }
         
@@ -34,7 +34,7 @@ class HomeCell : UICollectionViewCell, UITableViewDelegate,UITableViewDataSource
     
     lazy var tableView : UITableView = {
         let table = UITableView()
-        table.frame = frame
+//        table.frame = frame
         table.translatesAutoresizingMaskIntoConstraints = false
         
         table.delegate = self
@@ -57,7 +57,8 @@ class HomeCell : UICollectionViewCell, UITableViewDelegate,UITableViewDataSource
         addSubview(tableView)
         addSubview(v)
         
-        tableView.contentInset = UIEdgeInsetsMake(20, 0, -50, 0 )
+        tableView.contentInset = UIEdgeInsetsMake(8, 0, 8, 0 )
+        tableView.scrollIndicatorInsets = UIEdgeInsetsMake(8, 0, 8, 0 )
         
         tableView.topAnchor.constraint(equalTo: topAnchor, constant : 4).isActive = true
         tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -102,5 +103,27 @@ class HomeCell : UICollectionViewCell, UITableViewDelegate,UITableViewDataSource
         }
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! TableCell
+        
+        
+        UIView.animate(withDuration: 2, delay: 0, options: .curveEaseInOut, animations: {
+            cell.todoStatusChange.alpha = 1
+        }, completion: { (flag) in
+            self.tnote.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
+            tableView.reloadData()})
+        
+        
+        
+        
+//        let todo  = todos[indexPath.row]
+//        if todo.state = State.Pending.rawValue{
+//            TodoDAO().Update(todo: todo, state: State.Done.rawValue)
+//        }else{
+//            TodoDAO().Update(todo: todo, state: State.Pending.rawValue)
+//        }
+    }
     
 }

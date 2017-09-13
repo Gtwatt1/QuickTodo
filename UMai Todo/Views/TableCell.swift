@@ -43,10 +43,20 @@ class TableCell : UITableViewCell{
         return icon
     }()
     
+    let todoStatusChange : UIImageView = {
+        let icon = UIImageView()
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        icon.image = UIImage(named: "diamond")
+        icon.isHidden = false
+        icon.alpha = 0
+        return icon
+    }()
+    
     
     func setupViews(){
         addSubview(todoTitle)
         addSubview(todoIcon)
+        addSubview(todoStatusChange)
         
         todoTitle.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         todoTitle.leftAnchor.constraint(equalTo: todoIcon.rightAnchor, constant : 8).isActive = true
@@ -57,6 +67,11 @@ class TableCell : UITableViewCell{
         todoIcon.leftAnchor.constraint(equalTo: leftAnchor,  constant : 36).isActive = true
         todoIcon.widthAnchor.constraint(equalToConstant: 24).isActive = true
         todoIcon.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        
+        todoStatusChange.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        todoStatusChange.widthAnchor.constraint(equalToConstant : 24).isActive = true
+        todoStatusChange.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
+        todoStatusChange.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
     
 }

@@ -17,8 +17,9 @@ UICollectionViewDelegateFlowLayout{
 
         super.viewDidLoad()
         setupNavBar()
-        setupCollectionView()
         setupMenuBar()
+        setupCollectionView()
+
     }
     
     
@@ -87,7 +88,7 @@ UICollectionViewDelegateFlowLayout{
         self.navigationItem.rightBarButtonItem  = addButton
         
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 64, height: 120))
-        titleLabel.text = "UMAI todo"
+        titleLabel.text = " 💡 UMAI todo"
         titleLabel.numberOfLines = 8
         titleLabel.textColor = Utilities.getColorWithHexString("#00B2B7")
         titleLabel.font =  UIFont (name: "GillSans-UltraBold", size: 24)
@@ -132,9 +133,9 @@ UICollectionViewDelegateFlowLayout{
         view.addSubview(collectionView)
         
         collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
+        collectionView.topAnchor.constraint(equalTo: backView.bottomAnchor).isActive = true
         collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
 
         
         
@@ -156,7 +157,7 @@ UICollectionViewDelegateFlowLayout{
     
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.height)
+        return CGSize(width: view.frame.width, height: view.frame.height - 200)
     }
     
     
