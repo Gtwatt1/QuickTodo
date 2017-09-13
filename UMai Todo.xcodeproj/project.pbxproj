@@ -17,6 +17,7 @@
 		3FCF89391F683696009A3A36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FCF89371F683696009A3A36 /* LaunchScreen.storyboard */; };
 		3FCF89411F683969009A3A36 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF89401F683969009A3A36 /* HomeController.swift */; };
 		3FCF89431F684A18009A3A36 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF89421F684A18009A3A36 /* MenuBar.swift */; };
+		87CF2E105482819CC1F96511 /* Pods_UMai_Todo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5836B7BA0E734AE7D1237E95 /* Pods_UMai_Todo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,9 @@
 		3FCF893A1F683696009A3A36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FCF89401F683969009A3A36 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		3FCF89421F684A18009A3A36 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		5836B7BA0E734AE7D1237E95 /* Pods_UMai_Todo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UMai_Todo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7E456ADCFFFB0E7905F3AF7 /* Pods-UMai Todo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UMai Todo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UMai Todo/Pods-UMai Todo.debug.xcconfig"; sourceTree = "<group>"; };
+		E8D2BDB8A4081CF82B5A01A7 /* Pods-UMai Todo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UMai Todo.release.xcconfig"; path = "Pods/Target Support Files/Pods-UMai Todo/Pods-UMai Todo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,12 +44,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87CF2E105482819CC1F96511 /* Pods_UMai_Todo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04D5F0BE6DF80917358207EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5836B7BA0E734AE7D1237E95 /* Pods_UMai_Todo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3FAE86AE1F691D4A009A01AC /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +99,8 @@
 			children = (
 				3FCF892D1F683696009A3A36 /* UMai Todo */,
 				3FCF892C1F683696009A3A36 /* Products */,
+				55686BE0F674CE4CA4001E8C /* Pods */,
+				04D5F0BE6DF80917358207EA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,6 +128,15 @@
 			path = "UMai Todo";
 			sourceTree = "<group>";
 		};
+		55686BE0F674CE4CA4001E8C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E7E456ADCFFFB0E7905F3AF7 /* Pods-UMai Todo.debug.xcconfig */,
+				E8D2BDB8A4081CF82B5A01A7 /* Pods-UMai Todo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -120,9 +144,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FCF893D1F683696009A3A36 /* Build configuration list for PBXNativeTarget "UMai Todo" */;
 			buildPhases = (
+				E7C49829E612D9E28E9CFF9D /* [CP] Check Pods Manifest.lock */,
 				3FCF89271F683696009A3A36 /* Sources */,
 				3FCF89281F683696009A3A36 /* Frameworks */,
 				3FCF89291F683696009A3A36 /* Resources */,
+				99793A9AC171ED52CE10FCF9 /* [CP] Embed Pods Frameworks */,
+				BBF54739A30BF5F4E5377820 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -178,6 +205,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		99793A9AC171ED52CE10FCF9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UMai Todo/Pods-UMai Todo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BBF54739A30BF5F4E5377820 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UMai Todo/Pods-UMai Todo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7C49829E612D9E28E9CFF9D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3FCF89271F683696009A3A36 /* Sources */ = {
@@ -318,6 +393,7 @@
 		};
 		3FCF893E1F683696009A3A36 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7E456ADCFFFB0E7905F3AF7 /* Pods-UMai Todo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -334,6 +410,7 @@
 		};
 		3FCF893F1F683696009A3A36 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8D2BDB8A4081CF82B5A01A7 /* Pods-UMai Todo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

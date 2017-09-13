@@ -46,7 +46,7 @@ class TableCell : UITableViewCell{
     let todoStatusChange : UIImageView = {
         let icon = UIImageView()
         icon.translatesAutoresizingMaskIntoConstraints = false
-        icon.image = UIImage(named: "diamond")
+        icon.image = UIImage(named: "mark")
         icon.isHidden = false
         icon.alpha = 0
         return icon
@@ -72,6 +72,10 @@ class TableCell : UITableViewCell{
         todoStatusChange.widthAnchor.constraint(equalToConstant : 24).isActive = true
         todoStatusChange.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
         todoStatusChange.heightAnchor.constraint(equalToConstant: 24).isActive = true
+    }
+    
+    override func prepareForReuse() {
+        todoStatusChange.image = nil
     }
     
 }

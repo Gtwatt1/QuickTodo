@@ -106,9 +106,9 @@ class HomeCell : UICollectionViewCell, UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! TableCell
+        cell.todoStatusChange.image = UIImage(named:"cancel")
         
-        
-        UIView.animate(withDuration: 2, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
             cell.todoStatusChange.alpha = 1
         }, completion: { (flag) in
             self.tnote.remove(at: indexPath.row)

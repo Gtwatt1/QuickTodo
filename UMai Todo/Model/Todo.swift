@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import RealmSwift
 
 
-class Todo {
+class Todo: Object {
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var title = ""
     @objc dynamic var state = State.Pending.rawValue

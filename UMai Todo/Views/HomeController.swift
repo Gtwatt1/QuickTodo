@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SCLAlertView
+
 
 class HomeController : UIViewController, UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout{
@@ -110,11 +112,33 @@ UICollectionViewDelegateFlowLayout{
         
     }
     
+    
+    
     @objc func handleAdd(){
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "Noteworthy-Bold", size: 20)!,
+            kTextFont: UIFont(name: "Noteworthy-Bold", size: 14)!,
+            kButtonFont: UIFont(name: "Noteworthy-Bold", size: 14)!,
+            showCloseButton: false,
+            titleColor: Utilities.getColorWithHexString("#00B2B7")
+        )
         
+        let alert = SCLAlertView(appearance: appearance)
+        let txt = alert.addTextField("What do wanna do")
+        alert.addButton("Add Todo") {
+            if let text = txt.text && text != ""{
+                addToDb(text : text)
+            }
+            print("Text value: \(txt.text ?? "")")
+        }
+        alert.showEdit("Todo", subTitle: "", colorStyle : 45751 )
         
     }
     
+    func addToDb(text: String){
+        
+        
+    }
    
 
     func setupCollectionView(){
